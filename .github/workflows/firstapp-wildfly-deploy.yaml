@@ -18,6 +18,6 @@ jobs:
         id: mvn_build
         run: |
           cd firstapp
-          mvn --batch-mode --update-snapshots install wildfly:deploy -Dwildfly.hostname=$ {{ secrets.WILDFLY_HOST }} \
+          mvn --batch-mode --update-snapshots wildfly:deploy -Dwildfly.hostname=$ {{ secrets.WILDFLY_HOST }} \
           -Dwildfly.username=${{ secrets.WILDFLY_ADMIN_LOGIN }} \
           -Dwildfly.password=${{ secrets.WILDFLY_ADMIN_PASSWORD }}
