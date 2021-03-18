@@ -38,7 +38,12 @@
                 <plugin>
                     <groupId>org.wildfly.plugins</groupId>
                     <artifactId>wildfly-maven-plugin</artifactId>
-                    <version>2.0.1.Final</version>
+                    <version>2.0.2.Final</version>
+                    <configuration>
+                        <hostname>80.78.247.224</hostname>
+                        <username>mike</username>
+                        <password>gfhjkm123</password>
+                    </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>
