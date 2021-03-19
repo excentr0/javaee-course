@@ -20,6 +20,8 @@ public class ProductServlet extends HttpServlet {
 
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    resp.getWriter().println("<p>" + req.getRequestURI() + "</p>");
+
     resp.getWriter().println("<table>");
     resp.getWriter().println("<tr>");
     resp.getWriter().println("<th>Id</th>");
