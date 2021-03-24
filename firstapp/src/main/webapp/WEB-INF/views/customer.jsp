@@ -7,14 +7,14 @@
 <body>
 
 <jsp:include page="navigation.jsp">
-    <jsp:param name="title" value="Product" />
+    <jsp:param name="title" value="Customer" />
 </jsp:include>
 
 <div class="container">
     <div class="row py-2">
         <div class="col-12">
-            <c:url value="/product/new" var="newProductUrl" />
-            <a class="btn btn-primary" href="${newProductUrl}">Add Product</a>
+            <c:url value="/customer/new" var="newCustomerUrl" />
+            <a class="btn btn-primary" href="${newCustomerUrl}">Add Customer</a>
         </div>
         <div class="col-12">
             <table class="table table-bordered my-2">
@@ -22,38 +22,33 @@
                 <tr>
                     <th scope="col">Id</th>
                     <th scope="col">Name</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Actions</th>
+                    <th scope="col">Phone</th>
                 </tr>
                 </thead>
                 <tbody>
                 <c:choose>
-                    <c:when test="${requestScope.products.isEmpty()}">
+                    <c:when test="${requestScope.categories.isEmpty()}">
                         <tr>
-                            <td colspan="4">
+                            <td colspan="3">
                                 No data
                             </td>
                         </tr>
                     </c:when>
                     <c:otherwise>
-                        <c:forEach var="product" items="${requestScope.products}">
+                        <c:forEach var="customer" items="${requestScope.customers}">
                             <tr>
                                 <th scope="row">
-                                    <c:out value="${product.id}" />
+                                    <c:out value="${customer.id}" />
                                 </th>
                                 <td>
-                                    <c:out value="${product.name}" />
+                                    <c:out value="${customer.name}" />
                                 </td>
                                 <td>
-                                    <c:out value="${product.desc}" />
+                                    <c:out value="${customer.phone}" />
                                 </td>
                                 <td>
-                                    <c:out value="${product.price}" />
-                                </td>
-                                <td>
-                                    <c:url value="/product/${product.id}" var="productUrl" />
-                                    <a class="btn btn-success" href="${productUrl}"><em class="fas fa-edit"></em></a>
+                                    <c:url value="/customer/${customer.id}" var="customerUrl" />
+                                    <a class="btn btn-success" href="${customerUrl}"><em class="fas fa-edit"></em></a>
                                     <a class="btn btn-danger" href="#"><em class="far fa-trash-alt"></em></a>
                                 </td>
                             </tr>

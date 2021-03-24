@@ -17,8 +17,8 @@
             <!-- TODO при переходе по ссылкам должен открываться список категорий или клиентов -->
 
             <li class="nav-item active">
-                <c:url value="/category/" var="categoryUrl" />
-                <a class="nav-link" href="${categoryUrl}">Category</a>
+                <c:url value="/category/" var="customerUrl" />
+                <a class="nav-link" href="${customerUrl}">Category</a>
             </li>
             <li class="nav-item active">
                 <c:url value="/customer/" var="customerUrl" />
