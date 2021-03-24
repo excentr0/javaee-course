@@ -28,6 +28,7 @@ public class FirstServlet implements Servlet {
       throws IOException {
     log.info("New request");
     servletResponse.getWriter().println("<h1>Hello from Servlet</h1>");
+    servletResponse.getWriter().println("<h2>Привет от Servlet</h2>");
   }
 
   @Override
