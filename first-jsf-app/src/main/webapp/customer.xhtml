@@ -19,7 +19,7 @@
 <h:body>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">ToDo</a>
+        <a class="navbar-brand" href="#">Customer</a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -45,36 +45,32 @@
         <div class="row py-2">
             <h:form id="form">
                 <div class="col-12">
-                    <pp:commandButton value="Add Product" styleClass="btn btn-success"
-                                      action="#{productController.addProduct()}" />
+                    <pp:commandButton value="Add customer" styleClass="btn btn-success"
+                                      action="#{customerController.addCustomer()}" />
                 </div>
 
                 <div class="col-12">
-                    <pp:dataTable value="#{productController.findAll()}" var="product"
-                                  id="productTableForm">
+                    <pp:dataTable value="#{customerController.findAll()}" var="customer"
+                                  id="customerTableForm">
                         <pp:column>
                             <f:facet name="header">Id</f:facet>
-                            #{product.id}
+                            #{customer.id}
                         </pp:column>
                         <pp:column>
                             <f:facet name="header">Name</f:facet>
-                            #{product.name}
+                            #{customer.name}
                         </pp:column>
                         <pp:column>
-                            <f:facet name="header">Description</f:facet>
-                            #{product.desc}
-                        </pp:column>
-                        <pp:column>
-                            <f:facet name="header">Price</f:facet>
-                            #{product.price}
+                            <f:facet name="header">Phone</f:facet>
+                            #{customer.phone}
                         </pp:column>
                         <pp:column>
                             <f:facet name="header">Action</f:facet>
                             <pp:commandButton styleClass="btn btn-success" icon="fa fa-edit"
-                                              action="#{productController.editProduct(product)}" />
+                                              action="#{customerController.editCustomer(customer)}" />
                             <pp:commandButton styleClass="btn btn-danger" icon="far fa-trash-alt"
-                                              action="#{productController.deleteProduct(product)}"
-                                              update="productTableForm">
+                                              action="#{customerController.deleteCustomer(customer)}"
+                                              update="customerTableForm">
                             </pp:commandButton>
                         </pp:column>
                     </pp:dataTable>

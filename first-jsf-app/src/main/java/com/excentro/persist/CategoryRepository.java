@@ -1,14 +1,27 @@
 package com.excentro.persist;
 
+import javax.annotation.PostConstruct;
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
 
+@Named
+@ApplicationScoped
 public class CategoryRepository {
   private final Map<Long, Category> categoryMap = new ConcurrentHashMap<>();
   private final AtomicLong id = new AtomicLong(0);
+
+  @PostConstruct
+  public void init() {
+    save(new Category(null, "Category 1"));
+    save(new Category(null, "Category 2"));
+    save(new Category(null, "Category 3"));
+    save(new Category(null, "Category 4"));
+  }
 
   public void save(Category category) {
     if (category.getId() == null) {
