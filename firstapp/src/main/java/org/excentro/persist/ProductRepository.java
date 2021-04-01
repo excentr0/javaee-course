@@ -8,11 +8,11 @@ import java.util.concurrent.atomic.AtomicLong;
 
 public class ProductRepository {
   private final Map<Long, Product> productMap = new ConcurrentHashMap<>();
-  private final AtomicLong identity = new AtomicLong(0);
+  private final AtomicLong id = new AtomicLong(0);
 
   public void save(Product product) {
     if (product.getId() == null) {
-      product.setId(identity.incrementAndGet());
+      product.setId(id.incrementAndGet());
     }
     productMap.put(product.getId(), product);
   }
