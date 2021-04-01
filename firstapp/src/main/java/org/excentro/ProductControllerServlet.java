@@ -45,18 +45,8 @@ public class ProductControllerServlet extends HttpServlet {
           .getRequestDispatcher("/WEB-INF/views/product_form.jsp")
           .forward(req, resp);
     } else {
-
-      Matcher matcher = pathParam.matcher(req.getPathInfo());
-
-      if (matcher.matches()) {
-        long id;
-        try {
-          id = Long.parseLong(matcher.group(1));
-        } catch (NumberFormatException ex) {
-          resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-          return;
-        }
-
+      try {
+        long id = getIdFromPath(req.getPathInfo());
         Product product = productRepository.findById(id);
 
         if (product == null) {
@@ -68,9 +58,10 @@ public class ProductControllerServlet extends HttpServlet {
         getServletContext()
             .getRequestDispatcher("/WEB-INF/views/product_form.jsp")
             .forward(req, resp);
-      }
 
-      resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
+      } catch (IllegalArgumentException ex) {
+        resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+      }
     }
   }
 
@@ -97,8 +88,29 @@ public class ProductControllerServlet extends HttpServlet {
       } catch (NumberFormatException ex) {
         resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
       }
+    } else if (req.getPathInfo().startsWith("/delete")) {
+      try {
+        long id = getIdFromPath(req.getPathInfo().replace("/delete", ""));
+        productRepository.delete(id);
+        logger.info("Deleted product with id {}", id);
+        resp.sendRedirect(getServletContext().getContextPath() + "/product");
+      } catch (IllegalArgumentException ex) {
+        resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
+      }
     } else {
       resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
     }
+  }
+
+  private long getIdFromPath(String path) {
+    Matcher matcher = pathParam.matcher(path);
+    if (matcher.matches()) {
+      try {
+        return Long.parseLong(matcher.group(1));
+      } catch (NumberFormatException ex) {
+        throw new IllegalArgumentException();
+      }
+    }
+    throw new IllegalArgumentException();
   }
 }
