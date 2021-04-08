@@ -2,8 +2,6 @@ package org.excentro;
 
 import org.excentro.persist.Category;
 import org.excentro.persist.CategoryRepository;
-import org.excentro.persist.Product;
-import org.excentro.persist.ProductRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,7 +11,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 

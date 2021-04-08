@@ -15,7 +15,7 @@ jobs:
           java-version: 11
 
       - name: Build with maven
-        id: mvn_build
+        id: mvn_build_1
         run: |
           cd firstapp
           mvn --batch-mode --update-snapshots wildfly:undeploy wildfly:deploy \
@@ -23,8 +23,8 @@ jobs:
           -Dwildfly.username=${{ secrets.WILDFLY_ADMIN_LOGIN }} \
           -Dwildfly.password=${{ secrets.WILDFLY_ADMIN_PASSWORD }}
 
-      - name: Build with maven first-jsp-app
-          id: mvn_build_first
+      - name: Build with maven
+          id: mvn_build_2
           run: |
             cd first-jsp-app
             mvn --batch-mode --update-snapshots wildfly:undeploy wildfly:deploy \
