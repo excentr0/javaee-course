@@ -15,10 +15,19 @@ jobs:
           java-version: 11
 
       - name: Build with maven
-          id: mvn_build_2
-          run: |
-            cd first-jsp-app
-            mvn --batch-mode --update-snapshots wildfly:undeploy wildfly:deploy \
-            -Dwildfly.hostname=${{ secrets.WILDFLY_HOST }} \
-            -Dwildfly.username=${{ secrets.WILDFLY_ADMIN_LOGIN }} \
-            -Dwildfly.password=${{ secrets.WILDFLY_ADMIN_PASSWORD }}
+        id: mvn_build_1
+        run: |
+          cd firstapp
+          mvn --batch-mode --update-snapshots wildfly:undeploy wildfly:deploy \
+          -Dwildfly.hostname=${{ secrets.WILDFLY_HOST }} \
+          -Dwildfly.username=${{ secrets.WILDFLY_ADMIN_LOGIN }} \
+          -Dwildfly.password=${{ secrets.WILDFLY_ADMIN_PASSWORD }}
+
+      - name: Build with maven
+        id: mvn_build_2
+        run: |
+          cd first-jsf-app
+          mvn --batch-mode --update-snapshots wildfly:undeploy wildfly:deploy \
+          -Dwildfly.hostname=${{ secrets.WILDFLY_HOST }} \
+          -Dwildfly.username=${{ secrets.WILDFLY_ADMIN_LOGIN }} \
+          -Dwildfly.password=${{ secrets.WILDFLY_ADMIN_PASSWORD }}
