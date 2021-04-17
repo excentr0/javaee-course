@@ -2,7 +2,6 @@ package com.excentro.persist;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -17,12 +16,10 @@ import java.math.BigDecimal;
   @NamedQuery(name = "count", query = "select count(*) from Product p")
 })
 public class Product {
-  @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  private Long id;
+  @Id @GeneratedValue private Long id;
 
-  private String     name;
-  private String     description;
+  private String name;
+  private String description;
   private BigDecimal price;
 
   public Product() {}
